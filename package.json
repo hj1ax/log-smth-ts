@@ -1,7 +1,7 @@
 {
     "name": "log-smth",
     "version": "1.0.7",
-    "main": "src/index.js",
+    "main": "dist/index.js",
     "author": "sach1",
     "licen se": "MIT",
     "github": "https://github.com/ya-sach1/log-smth",
@@ -12,8 +12,8 @@
     "devDependencies": {
         "@types/node": "^14.6.2"
     },
+    "types": "dist/index.d.ts",
     "scripts": {
-        "start": "cd dist && node index.js",
-        "compile": "tsc --watch"
+        "build": "tsc"
     }
 }

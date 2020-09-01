@@ -6,8 +6,7 @@
         "esModuleInterop": true,
         "skipLibCheck": true,
         "forceConsistentCasingInFileNames": true,
-        "newLine": "lf",
-        "outDir": "./dist"
+        "newLine": "lf"
     },
     "$schema": "https://json.schemastore.org/tsconfig",
     "display": "Recommended",

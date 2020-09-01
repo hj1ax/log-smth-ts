@@ -1,0 +1,8 @@
+node_modules
+yarn.lock
+yarn-error.log
+logs.json
+LICENSE
+.prettierrc.yaml
+tsconfig.json
+*.ts
