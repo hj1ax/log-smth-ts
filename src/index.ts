@@ -22,9 +22,6 @@ export class Logger {
     public loggerOptions: loggerOptions;
 
     constructor(options: loggerOptions = defaultOptions) {
-        if (!options.defaultLog) options.defaultLog = 'log';
-        if (!options.timestamps) options.timestamps = true;
-        if (!options.logFile) options.logFile = false;
         if (options.logFile && !options.logDirPath)
             throw new Error('logFile is true but no logDirPath was specified.');
         if (!options.whichLogLevelsShouldBeLogged)
