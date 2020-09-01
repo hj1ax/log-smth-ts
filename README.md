@@ -11,7 +11,7 @@ npm i log-smth
 ```
 
 ```js
-const Logger = require('log-smth'); // import { Logger } from 'log-smth';
+const { Logger } = require('log-smth'); // import { Logger } from 'log-smth';
 
 const logger = new Logger({
     timestamps: true, // or false, if you don't want timestamps.

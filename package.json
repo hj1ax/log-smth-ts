@@ -1,20 +1,20 @@
 {
     "name": "log-smth",
-    "version": "1.0.9",
+    "version": "1.1.0",
     "main": "dist/index.js",
     "author": "sach1",
     "licen se": "MIT",
     "github": "https://github.com/ya-sach1/log-smth",
     "dependencies": {
         "chalk": "^4.1.0",
-        "log-smth": "^1.0.8",
+        "log-smth": "^1.1.0",
         "log-symbols": "^4.0.0"
     },
     "devDependencies": {
         "@types/node": "^14.6.2"
     },
-    "types": "dist/index.d.ts",
     "scripts": {
-        "build": "tsc"
+        "build": "tsc",
+        "start": "cd dist && node index.js"
     }
 }

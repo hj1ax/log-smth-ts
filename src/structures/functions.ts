@@ -4,7 +4,7 @@ import { writeFileSync, readFileSync } from 'fs';
 import { Chalk } from 'chalk';
 
 // Internal
-import { Levels } from './utils';
+import { Levels, logSkel } from './utils';
 //
 
 export const sendLog = (
@@ -27,10 +27,7 @@ export const firstLetterToUppercase = (text: string | Levels): string => {
     return `${text.charAt(0).toUpperCase()}${text.slice(1)}`;
 };
 
-export const logInFile = (
-    path: string,
-    data: { date: Date | string; loglevel: Levels | string; message: string }
-): void => {
+export const logInFile = (path: string, data: logSkel): void => {
     let file = readFileSync(path, 'utf-8');
 
     if (file.length === 0) {

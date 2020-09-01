@@ -10,25 +10,18 @@ import {
     sendLog,
     firstLetterToUppercase,
 } from './structures/functions';
-import { Levels } from './structures/utils';
+import {
+    Levels,
+    loggerOptions,
+    defaultOptions,
+    logSkel,
+} from './structures/utils';
 //
 
 export class Logger {
-    options: {
-        timestamps: boolean;
-        defaultLog: string;
-        logFile: boolean;
-        logDirPath: string;
-        whichLogLevelsShouldBeLogged: string[];
-    };
+    public loggerOptions: loggerOptions;
 
-    constructor(options: {
-        timestamps: boolean;
-        defaultLog: string;
-        logFile: boolean;
-        logDirPath: string;
-        whichLogLevelsShouldBeLogged: string[];
-    }) {
+    constructor(options: loggerOptions = defaultOptions) {
         if (!options.defaultLog) options.defaultLog = 'log';
         if (!options.timestamps) options.timestamps = true;
         if (!options.logFile) options.logFile = false;
@@ -43,26 +36,26 @@ export class Logger {
                 writeFileSync(`${options.logDirPath}/log.json`, '{"logs": []}');
         }
 
-        this.options = options;
+        this.loggerOptions = options;
     }
 
     log(message: string, loglevel: string | Levels) {
         if (!message) message = white('No message.');
-        if (!loglevel) loglevel = this.options.defaultLog;
-        if (!this.options.defaultLog) loglevel = 'log';
+        if (!loglevel) loglevel = this.loggerOptions.defaultLog;
+        if (!this.loggerOptions.defaultLog) loglevel = 'log';
 
         if (
-            this.options.logFile &&
-            this.options.logDirPath &&
-            this.options.whichLogLevelsShouldBeLogged.includes(loglevel)
+            this.loggerOptions.logFile &&
+            this.loggerOptions.logDirPath &&
+            this.loggerOptions.whichLogLevelsShouldBeLogged.includes(loglevel)
         ) {
-            const toBeLogged = {
+            const toBeLogged: logSkel = {
                 date: new Date().toLocaleString(),
                 loglevel: firstLetterToUppercase(loglevel),
                 message: message,
             };
 
-            logInFile(`${this.options.logDirPath}/log.json`, toBeLogged);
+            logInFile(`${this.loggerOptions.logDirPath}/log.json`, toBeLogged);
         }
 
         switch (loglevel.toLowerCase()) {
@@ -111,7 +104,7 @@ export class Logger {
                 return sendLog(
                     white,
                     message,
-                    this.options.defaultLog,
+                    this.loggerOptions.defaultLog,
                     info,
                     new Date().toLocaleString()
                 );
