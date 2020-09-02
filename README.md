@@ -1,4 +1,4 @@
-# Hello.
+# Hello
 
 What are you doing here?
 
