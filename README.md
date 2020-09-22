@@ -10,26 +10,74 @@ yarn add log-smth # or
 npm i log-smth
 ```
 
-```js
-const { Logger } = require('log-smth'); // import { Logger } from 'log-smth';
+Typescript:
 
-const logger = new Logger({
-    timestamps: true, // or false, if you don't want timestamps.
-    /*
-     / this is which log type should be used if none is specified, defaults to log normally.
-     / It can be pretty much anything as long as it is a string.
-    */
-    defaultLog: 'Wassup',
-    logFile: true, // wheter you want to log to a json file or not.
-    logDirPath: __dirname, // path to the directory where the log.json file will be created.
-    whichLogLevelsShouldBeLogged: ['error', 'warn'],
+```ts
+import Logger from 'log-smth'; // or import { default as Logger } from 'log-smth';
+
+const logger: Logger = new Logger();
+
+// or
+
+const loggerWithOptions: Logger = new Logger({
+    timestamps: true,
+    logFile: true,
+    logDirPath: __dirname,
+    defaultLog: 'custom log moment', // can also be a custom log, if you wish so.
+    logLevels: ['error', 'warn'],
 });
 
-logger.log('Hello!', 'error');
-logger.log('Hello!', 'log');
-logger.log('Hello!', 'debug');
-logger.log('Hello!', 'info');
-logger.log('Hello!', 'warn');
-logger.log('Hello!');
+logger.log('Hi', 'error');
+logger.log('Hi', 'info');
+logger.log('Hi', 'log');
+logger.log('Hi', 'warn');
+logger.log('Hi', 'debug');
+logger.log('Hi', 'you can use custom logs like this too!');
+logger.log('Hi');
+
+console.log('\n');
+
+loggerWithOptions.log('Hi', 'error');
+loggerWithOptions.log('Hi', 'info');
+loggerWithOptions.log('Hi', 'log');
+loggerWithOptions.log('Hi', 'warn');
+loggerWithOptions.log('Hi', 'debug');
+loggerWithOptions.log('Hi', 'you can use custom logs like this too B)');
+loggerWithOptions.log('Hi');
 ```
 
+Javascript:
+
+```js
+const Logger = require('log-smth');
+
+const logger = new Logger();
+
+// or
+
+const loggerWithOptions = new Logger({
+    timestamps: true,
+    logFile: true,
+    logDirPath: __dirname,
+    defaultLog: 'custom log moment', // can also be a custom log, if you wish so.
+    logLevels: ['error', 'warn'],
+});
+
+logger.log('Hi', 'error');
+logger.log('Hi', 'info');
+logger.log('Hi', 'log');
+logger.log('Hi', 'warn');
+logger.log('Hi', 'debug');
+logger.log('Hi', 'you can use custom logs like this too!');
+logger.log('Hi');
+
+console.log('\n');
+
+loggerWithOptions.log('Hi', 'error');
+loggerWithOptions.log('Hi', 'info');
+loggerWithOptions.log('Hi', 'log');
+loggerWithOptions.log('Hi', 'warn');
+loggerWithOptions.log('Hi', 'debug');
+loggerWithOptions.log('Hi', 'you can use custom logs like this too B)');
+loggerWithOptions.log('Hi');
+```

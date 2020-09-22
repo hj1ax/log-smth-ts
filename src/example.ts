@@ -1,10 +1,10 @@
 import Logger from './index'; // or import { default as Logger } from './index';
 
-const logger = new Logger();
+const logger: Logger = new Logger();
 
 // or
 
-const loggerWithOptions = new Logger({
+const loggerWithOptions: Logger = new Logger({
     timestamps: true,
     logFile: true,
     logDirPath: __dirname,
@@ -29,5 +29,3 @@ loggerWithOptions.log('Hi', 'warn');
 loggerWithOptions.log('Hi', 'debug');
 loggerWithOptions.log('Hi', 'you can use custom logs like this too B)');
 loggerWithOptions.log('Hi');
-
-console.log = logger.log;
