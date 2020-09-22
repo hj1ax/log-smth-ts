@@ -1,13 +1,8 @@
-// Modules
-// External
 import { writeFileSync, readFileSync } from 'fs';
 import { Chalk } from 'chalk';
-
-// Internal
 import { Levels, logSkel } from './utils';
-//
 
-export const sendLog = (
+const sendLog = (
     color: Chalk,
     message: string,
     level: Levels | string,
@@ -23,11 +18,11 @@ export const sendLog = (
     );
 };
 
-export const firstLetterToUppercase = (text: string | Levels): string => {
+const firstLetterToUppercase = (text: string | Levels): string => {
     return `${text.charAt(0).toUpperCase()}${text.slice(1)}`;
 };
 
-export const logInFile = (path: string, data: logSkel): void => {
+const logInFile = (path: string, data: logSkel): void => {
     let file = readFileSync(path, 'utf-8');
 
     if (file.length === 0) {
@@ -39,3 +34,5 @@ export const logInFile = (path: string, data: logSkel): void => {
     jsonData.logs.push(data);
     writeFileSync(path, JSON.stringify(jsonData, null, 4));
 };
+
+export { logInFile, firstLetterToUppercase, sendLog };

@@ -1,10 +1,7 @@
-// Modules
-// External
 import { success, info, error, warning } from 'log-symbols';
 import { existsSync, writeFileSync } from 'fs';
 import { red, yellow, white, blue, cyan } from 'chalk';
 
-// Internal
 import {
     logInFile,
     sendLog,
@@ -16,35 +13,36 @@ import {
     defaultOptions,
     logSkel,
 } from './structures/utils';
-//
 
-export class Logger {
-    public loggerOptions: loggerOptions;
+export default class Logger {
+    private _loggerOptions: loggerOptions;
 
-    constructor(options: loggerOptions = defaultOptions) {
+    public constructor(options: loggerOptions = defaultOptions) {
         if (options.logFile && !options.logDirPath)
-            throw new Error('logFile is true but no logDirPath was specified.');
-        if (!options.whichLogLevelsShouldBeLogged)
-            options.whichLogLevelsShouldBeLogged = ['error', 'warn'];
+            throw new Error(
+                'parameter logFile is true but no logDirPath was specified.'
+            );
 
-        // Check if the log.json file exists.
+        if (!options.logLevels) options.logLevels = ['error', 'warn'];
+
+        // Check if the log.json file exists, if it doesn't, create it.
         if (options.logFile) {
             if (!existsSync(`${options.logDirPath}/log.json`))
                 writeFileSync(`${options.logDirPath}/log.json`, '{"logs": []}');
         }
 
-        this.loggerOptions = options;
+        this._loggerOptions = options;
     }
 
-    log(message: string, loglevel: string | Levels) {
+    public log(message: string, loglevel?: string | Levels) {
         if (!message) message = white('No message.');
-        if (!loglevel) loglevel = this.loggerOptions.defaultLog;
-        if (!this.loggerOptions.defaultLog) loglevel = 'log';
+        if (!loglevel) loglevel = this._loggerOptions.defaultLog;
+        if (!this._loggerOptions.defaultLog) loglevel = 'log';
 
         if (
-            this.loggerOptions.logFile &&
-            this.loggerOptions.logDirPath &&
-            this.loggerOptions.whichLogLevelsShouldBeLogged.includes(loglevel)
+            this._loggerOptions.logFile &&
+            this._loggerOptions.logDirPath &&
+            this._loggerOptions.logLevels.includes(loglevel)
         ) {
             const toBeLogged: logSkel = {
                 date: new Date().toLocaleString(),
@@ -52,7 +50,7 @@ export class Logger {
                 message: message,
             };
 
-            logInFile(`${this.loggerOptions.logDirPath}/log.json`, toBeLogged);
+            logInFile(`${this._loggerOptions.logDirPath}/log.json`, toBeLogged);
         }
 
         switch (loglevel.toLowerCase()) {
@@ -101,7 +99,7 @@ export class Logger {
                 return sendLog(
                     white,
                     message,
-                    this.loggerOptions.defaultLog,
+                    loglevel || this._loggerOptions.defaultLog,
                     info,
                     new Date().toLocaleString()
                 );

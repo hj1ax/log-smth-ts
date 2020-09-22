@@ -1,6 +1,6 @@
 import { Levels, loggerOptions } from './structures/utils';
-export declare class Logger {
-    loggerOptions: loggerOptions;
+export default class Logger {
+    private _loggerOptions;
     constructor(options?: loggerOptions);
-    log(message: string, loglevel: string | Levels): void;
+    log(message: string, loglevel?: string | Levels): void;
 }

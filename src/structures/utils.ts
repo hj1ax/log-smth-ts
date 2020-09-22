@@ -1,5 +1,4 @@
-// Enumerators
-export enum Levels {
+enum Levels {
     LOG = 'log',
     INFO = 'info',
     DEBUG = 'debug',
@@ -7,27 +6,26 @@ export enum Levels {
     ERROR = 'error',
 }
 
-// Interfaces
-export interface loggerOptions {
-    timestamps: boolean;
-    defaultLog: string;
-    logFile: boolean;
-    logDirPath: string;
-    whichLogLevelsShouldBeLogged: string[];
+interface loggerOptions {
+    timestamps?: boolean;
+    defaultLog?: string;
+    logFile?: boolean;
+    logDirPath?: string;
+    logLevels?: string[];
 }
 
-export const defaultOptions: loggerOptions = {
+const defaultOptions: loggerOptions = {
     timestamps: true,
     defaultLog: 'log',
     logFile: false,
-    logDirPath: '',
-    whichLogLevelsShouldBeLogged: [],
+    logDirPath: null,
+    logLevels: null,
 };
 
-export interface logSkel {
+interface logSkel {
     date: string | Date;
     loglevel: string | number;
     message: string;
 }
 
-//
+export { logSkel, loggerOptions, Levels, defaultOptions };

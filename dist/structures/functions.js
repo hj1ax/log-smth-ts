@@ -1,17 +1,16 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.logInFile = exports.firstLetterToUppercase = exports.sendLog = void 0;
-// Modules
-// External
+exports.sendLog = exports.firstLetterToUppercase = exports.logInFile = void 0;
 const fs_1 = require("fs");
-//
-exports.sendLog = (color, message, level, symbol, timestamp) => {
-    return console.log(color(`[ ${symbol} ${exports.firstLetterToUppercase(level)} :: ${timestamp} ] :: ${message}`));
+const sendLog = (color, message, level, symbol, timestamp) => {
+    return console.log(color(`[ ${symbol} ${firstLetterToUppercase(level)} :: ${timestamp} ] :: ${message}`));
 };
-exports.firstLetterToUppercase = (text) => {
+exports.sendLog = sendLog;
+const firstLetterToUppercase = (text) => {
     return `${text.charAt(0).toUpperCase()}${text.slice(1)}`;
 };
-exports.logInFile = (path, data) => {
+exports.firstLetterToUppercase = firstLetterToUppercase;
+const logInFile = (path, data) => {
     let file = fs_1.readFileSync(path, 'utf-8');
     if (file.length === 0) {
         fs_1.writeFileSync(path, '{"logs": []}');
@@ -21,3 +20,4 @@ exports.logInFile = (path, data) => {
     jsonData.logs.push(data);
     fs_1.writeFileSync(path, JSON.stringify(jsonData, null, 4));
 };
+exports.logInFile = logInFile;

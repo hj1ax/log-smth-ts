@@ -1,7 +1,6 @@
 "use strict";
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.defaultOptions = exports.Levels = void 0;
-// Enumerators
 var Levels;
 (function (Levels) {
     Levels["LOG"] = "log";
@@ -9,12 +8,13 @@ var Levels;
     Levels["DEBUG"] = "debug";
     Levels["WARN"] = "warn";
     Levels["ERROR"] = "error";
-})(Levels = exports.Levels || (exports.Levels = {}));
-exports.defaultOptions = {
+})(Levels || (Levels = {}));
+exports.Levels = Levels;
+const defaultOptions = {
     timestamps: true,
     defaultLog: 'log',
     logFile: false,
-    logDirPath: '',
-    whichLogLevelsShouldBeLogged: [],
+    logDirPath: null,
+    logLevels: null,
 };
-//
+exports.defaultOptions = defaultOptions;

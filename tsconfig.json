@@ -11,7 +11,7 @@
         "esModuleInterop": true,
         "strictNullChecks": false,
         "strictPropertyInitialization": false,
-        "pretty": true
+        "pretty": true,
     },
     "exclude": ["node_modules", "./dist"]
 }
