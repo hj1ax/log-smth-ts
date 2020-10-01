@@ -55,7 +55,7 @@ export default class Logger {
                 message: message,
             };
 
-            logInFile(`${this._loggerOptions.logDirPath}/log.json`, toBeLogged);
+            logInFile(`${this._loggerOptions.logDirPath}`,this._loggerOptions.filetype , toBeLogged);
         }
 
         switch (loglevel.toLowerCase()) {

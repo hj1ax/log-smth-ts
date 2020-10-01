@@ -12,14 +12,16 @@ interface loggerOptions {
     logFile?: boolean;
     logDirPath?: string;
     logLevels?: string[];
+    filetype?: string;
 }
 
 const defaultOptions: loggerOptions = {
     timestamps: true,
     defaultLog: 'log',
     logFile: false,
-    logDirPath: null,
+    logDirPath: process.cwd(),
     logLevels: null,
+    filetype: 'json'
 };
 
 interface logSkel {
