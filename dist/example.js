@@ -28,4 +28,3 @@ loggerWithOptions.log('Hi', 'warn');
 loggerWithOptions.log('Hi', 'debug');
 loggerWithOptions.log('Hi', 'you can use custom logs like this too B)');
 loggerWithOptions.log('Hi');
-console.log = logger.log;
