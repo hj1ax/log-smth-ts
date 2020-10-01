@@ -10,6 +10,7 @@ const loggerWithOptions: Logger = new Logger({
     logDirPath: __dirname,
     defaultLog: 'custom log moment', // can also be a custom log, if you wish so.
     logLevels: ['error', 'warn'],
+    filetype: 'json'
 });
 
 logger.log('Hi', 'error');
