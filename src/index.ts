@@ -37,7 +37,10 @@ export default class Logger {
     public log(message: string, loglevel?: string | Levels) {
         if (!message) message = white('No message.');
         if (!loglevel) loglevel = this._loggerOptions.defaultLog;
-        if (!this._loggerOptions.defaultLog) loglevel = 'log';
+        if (!this._loggerOptions.defaultLog)
+            this._loggerOptions.defaultLog = 'log';
+
+        loglevel = loglevel.toLowerCase();
 
         if (
             this._loggerOptions.logFile &&
@@ -46,7 +49,9 @@ export default class Logger {
         ) {
             const toBeLogged: logSkel = {
                 date: new Date().toLocaleString(),
-                loglevel: firstLetterToUppercase(loglevel),
+                loglevel: this.checkLogLevel(loglevel)
+                    ? firstLetterToUppercase(loglevel)
+                    : this._loggerOptions.defaultLog,
                 message: message,
             };
 
@@ -104,5 +109,11 @@ export default class Logger {
                     new Date().toLocaleString()
                 );
         }
+    }
+
+    private checkLogLevel(logLevel: string): boolean {
+        const validValues = ['log', 'info', 'debug', 'warn', 'err'];
+
+        return validValues.includes(logLevel);
     }
 }
